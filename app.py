@@ -1,6 +1,16 @@
+import os
 import openai
+import config
 
-openai.api_key = "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"
+PrivateKey = config.api_key or os.environ.get('OPENAI_API_KEY')
+
+if not PrivateKey:
+    raise ValueError("OpenAI API key not found in the environment variable.\nCreate an config.py file with "
+                     "api_key=YOUR_KEY\n\n")
+else:
+    print(f"Logged with key \"{PrivateKey}\"\n\n")
+
+openai.api_key = PrivateKey
 Type = "Virtual assistant called jarvis"
 
 MAX_TOKENS = 200
@@ -9,7 +19,7 @@ messages = [{"role": "system", "content": Type}]
 print("Send a message.\n")
 
 while True:
-    user_input = input()
+    user_input = str(input())
 
     messages.append({"role": "user", "content": user_input})
 
