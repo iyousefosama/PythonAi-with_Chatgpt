@@ -1,6 +1,6 @@
 import openai
 
-openai.api_key = "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"
+openai.api_key = ""
 Type = "Virtual assistant called jarvis"
 
 MAX_TOKENS = 200
